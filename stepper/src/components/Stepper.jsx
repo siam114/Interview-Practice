@@ -19,6 +19,10 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
     });
   };
 
+  const calculateProgressBarWidth = () => {
+    return ((currentStep - 1) / (stepsConfig.length - 1)) * 100 + "%";
+  }
+
   const ActiveComponent = stepsConfig[currentStep - 1]?.Component;
 
   return (
@@ -43,6 +47,9 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
             </div>
           );
         })}
+        <div className="progress-bar">
+            <div className="progress" style={{width: `${calculateProgressBarWidth()}`}}></div>
+        </div>
       </div>
 
       <ActiveComponent />
